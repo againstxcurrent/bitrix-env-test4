@@ -13,10 +13,6 @@ RUN yum install -y openssh-server
 WORKDIR /etc/init.d
 RUN sed -i 's/memory=`free.*/memory=$\{BVAT_MEM\:\=262144\}/gi' bvat
 
-#xdebug enable
-WORKDIR /etc/php.d
-RUN sed -i 's/;xdebug.remote_enable=1/xdebug.remote_enable=1/gi' xdebug.ini
-
 # default password
 ENV SSH_PASS="bitrix"
 RUN echo "bitrix:$SSH_PASS" | chpasswd
